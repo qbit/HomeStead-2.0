@@ -43,6 +43,10 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 		server.print(sensor.getTempF());
 		server.printCRLF();
 
+		server.printP(pressHPA);
+		server.print(hpascals);
+		server.printCRLF();
+
 		server.printP(pressHG);
 		server.print(hpascals * 0.0295300);
 		server.printCRLF();
