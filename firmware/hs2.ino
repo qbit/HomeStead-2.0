@@ -3,7 +3,7 @@
 #include <WebServer.h>
 #include <SparkFun_Photon_Weather_Shield_Library.h>
 
-const String stationName = "GreenHouse";
+const char *stationName = "GreenHouse";
 
 Weather sensor;
 
@@ -29,7 +29,7 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 				"# TYPE pressure_hg gauge\r\n";
 
 		server.printP(humidity);
-		server.printf("humidity{name=\"%s\"}", stationName);
+		server.printf("humidity{name=\"%s\"} ", stationName);
 		server.print(sensor.getRH());
 		server.printCRLF();
 
