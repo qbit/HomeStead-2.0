@@ -6,6 +6,7 @@ Weather sensor;
 WebServer webserver("/", 80);
 
 void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
+	float hpascals = sensor.readPressure() / 100;
 	server.httpSuccess();
 	if (type == WebServer::GET) {
 		P(humidity) =	"# HELP humidity Last sampled humidity of weather shield\r\n"
@@ -20,6 +21,14 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 				"# TYPE temp_f gauge\r\n"
 				"temp_f ";
 
+		P(pressHPA) =	"# HELP pressure_hpa Last sampled pressure in hectopascals from weather shield\r\n"
+				"# TYPE pressure_hpa gauge\r\n"
+				"pressure_hpa ";
+
+		P(pressHG) =	"# HELP pressure_hg Last sampled pressure in inches if mercury from weather shield\r\n"
+				"# TYPE pressure_hg gauge\r\n"
+				"pressure_hpa ";
+
 		server.printP(humidity);
 		server.print(sensor.getRH());
 		server.printCRLF();
@@ -30,6 +39,10 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 
 		server.printP(temp);
 		server.print(sensor.getTempF());
+		server.printCRLF();
+
+		server.printP(pressHG);
+		server.print(hpascals * 0.0295300);
 		server.printCRLF();
 	}
 }
