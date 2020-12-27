@@ -14,6 +14,17 @@ Weather sensor;
 
 WebServer webserver("/", 80);
 
+void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
+	if (type == WebServer::GET) {
+		P(humidity) =	"# HELP humidity Last sampled humidity of weather shield"
+				"# TYPE humidity gauge";
+		server.printP(humidity);
+		server.print("humidity ");
+		server.print(sensor.getHR());
+	}
+}
+
+
 void setup() {
 	Serial.begin(9600);
 	WiFi.selectAntenna(ANT_INTERNAL);
@@ -27,16 +38,6 @@ void setup() {
 
 	webserver.setDefaultCommand(&getData);
 	webserver.begin();
-}
-
-void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
-	if (type == WebServer::GET) {
-		P(humidity) =	"# HELP humidity Last sampled humidity of weather shield"
-				"# TYPE humidity gauge"
-		server.printP(humidity);
-		server.print("humidity ");
-		server.print(sensor.getHR());
-	}
 }
 
 void loop() {
