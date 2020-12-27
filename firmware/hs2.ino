@@ -15,7 +15,7 @@ Weather sensor;
 WebServer webserver("/", 80);
 
 void setup() {
-	Serial.begin(9600)
+	Serial.begin(9600);
 	WiFi.selectAntenna(ANT_INTERNAL);
 
 	sensor.begin();
@@ -40,12 +40,8 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 }
 
 void loop() {
-	humidity = sensor.getHR()
-	tempF = sensor.getTempF();
-	baroTemp = sensor.readBaroTempF();
-	pascals = sensor.readPressure();
-	pressureHPA = pascals/100);
-	pressureInHG = pressureHPA * 0.0295300;
+	char buff[64];
+	int len = 64;
 
-	delay(5000);
+	webserver.processConnection(buff, &len);
 }
