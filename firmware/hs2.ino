@@ -19,7 +19,7 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 		server.printP(humidity);
 		server.print(sensor.getRH());
 
-		server.printCLRF();
+		server.printCRLF();
 
 		server.printP(baroTemp);
 		server.print(sensor.readBaroTempF());
