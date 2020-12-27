@@ -16,8 +16,8 @@ WebServer webserver("/", 80);
 
 void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 	if (type == WebServer::GET) {
-		P(humidity) =	"# HELP humidity Last sampled humidity of weather shield"
-				"# TYPE humidity gauge";
+		P(humidity) =	"# HELP humidity Last sampled humidity of weather shield\n"
+				"# TYPE humidity gauge\n";
 		server.printP(humidity);
 		server.print("humidity ");
 		server.print(sensor.getRH());
