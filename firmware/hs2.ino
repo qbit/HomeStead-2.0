@@ -1,8 +1,9 @@
 #define RGB_NOTIFICATIONS_CONNECTING_ONLY 1
-#define NAME "GreenHouse"
 
 #include <WebServer.h>
 #include <SparkFun_Photon_Weather_Shield_Library.h>
+
+const String stationName = "GreenHouse";
 
 Weather sensor;
 
@@ -28,27 +29,27 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 				"# TYPE pressure_hg gauge\r\n";
 
 		server.printP(humidity);
-		server.printf("humidity{name=\"%s\"}", NAME);
+		server.printf("humidity{name=\"%s\"}", stationName);
 		server.print(sensor.getRH());
 		server.printCRLF();
 
 		server.printP(baroTemp);
-		server.printf("barometer_temperature_f{name=\"%s\"} ", NAME};
+		server.printf("barometer_temperature_f{name=\"%s\"} ", stationName);
 		server.print(sensor.readBaroTempF());
 		server.printCRLF();
 
 		server.printP(temp);
-		server.printf("temp_f{name=\"%s\"} ", NAME);
+		server.printf("temp_f{name=\"%s\"} ", stationName);
 		server.print(sensor.getTempF());
 		server.printCRLF();
 
 		server.printP(pressHPA);
-		server.printf("pressure_hpa{name=\"%s\"} ", NAME);
+		server.printf("pressure_hpa{name=\"%s\"} ", stationName);
 		server.print(hpascals);
 		server.printCRLF();
 
 		server.printP(pressHG);
-		server.printf("pressure_hg{name=\"%s\"} ", NAME);
+		server.printf("pressure_hg{name=\"%s\"} ", stationName);
 		server.print(hpascals * 0.0295300);
 		server.printCRLF();
 	}
