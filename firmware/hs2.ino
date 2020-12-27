@@ -52,7 +52,6 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 		server.printf("wstation_pressure_hg{name=\"%s\"} ", stationName);
 		server.print(hpascals * 0.0295300);
 		server.printCRLF();
-		server.reset();
 	}
 }
 
