@@ -1,5 +1,3 @@
-#define RGB_NOTIFICATIONS_CONNECTING_ONLY 1
-
 #include <WebServer.h>
 #include <SparkFun_Photon_Weather_Shield_Library.h>
 
@@ -8,6 +6,15 @@ const char *stationName = "GreenHouse";
 Weather sensor;
 
 WebServer webserver("/metrics", 80);
+
+void setup_leds()
+{
+	#define RGB_NOTIFICATIONS_CONNECTING_ONLY 1
+	RGB.control(true);
+	RGB.brightness(0);
+}
+
+STARTUP(setup_leds());
 
 void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 	float hpascals = sensor.readPressure() / 100;
