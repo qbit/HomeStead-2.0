@@ -1,3 +1,5 @@
+#define RGB_NOTIFICATIONS_CONNECTING_ONLY
+
 #include <WebServer.h>
 #include <SparkFun_Photon_Weather_Shield_Library.h>
 
