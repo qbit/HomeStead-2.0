@@ -16,13 +16,21 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 				"# TYPE barometer_temperature_f gauge\r\n"
 				"barometer_temperature_f ";
 
+		P(temp) =	"# HELP temp_f Last sampled temperature in F of weather shield\r\n"
+				"# TYPE temp_f gauge\r\n"
+				"temp_f ";
+
 		server.printP(humidity);
 		server.print(sensor.getRH());
-
 		server.printCRLF();
 
 		server.printP(baroTemp);
 		server.print(sensor.readBaroTempF());
+		server.printCRLF();
+
+		server.printP(temp);
+		server.print(sensor.getTempF());
+		server.printCRLF();
 	}
 }
 
