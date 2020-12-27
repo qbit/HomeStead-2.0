@@ -27,7 +27,7 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 
 		P(pressHG) =	"# HELP pressure_hg Last sampled pressure in inches if mercury from weather shield\r\n"
 				"# TYPE pressure_hg gauge\r\n"
-				"pressure_hpa ";
+				"pressure_hg ";
 
 		server.printP(humidity);
 		server.print(sensor.getRH());
