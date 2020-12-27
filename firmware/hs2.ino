@@ -20,7 +20,7 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 				"# TYPE humidity gauge";
 		server.printP(humidity);
 		server.print("humidity ");
-		server.print(sensor.getHR());
+		server.print(sensor.getRH());
 	}
 }
 
