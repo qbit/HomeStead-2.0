@@ -21,7 +21,7 @@ void setup() {
 	sensor.begin();
 
 	sensor.setModeBarometer();
-	sensor.SetOversampleRate(7);
+	sensor.setOversampleRate(7);
 
 	sensor.enableEventFlags();
 
