@@ -38,27 +38,27 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 		server.printP(humidity);
 		server.printf("wstation_humidity{name=\"%s\"} ", stationName);
 		server.print(sensor.getRH());
-		server.printCRLF();
+		server.print("\n");
 
 		server.printP(baroTemp);
 		server.printf("wstation_barometer_temperature_f{name=\"%s\"} ", stationName);
 		server.print(sensor.readBaroTempF());
-		server.printCRLF();
+		server.print("\n");
 
 		server.printP(temp);
 		server.printf("wstation_temp_f{name=\"%s\"} ", stationName);
 		server.print(sensor.getTempF());
-		server.printCRLF();
+		server.print("\n");
 
 		server.printP(pressHPA);
 		server.printf("wstation_pressure_hpa{name=\"%s\"} ", stationName);
 		server.print(hpascals);
-		server.printCRLF();
+		server.print("\n");
 
 		server.printP(pressHG);
 		server.printf("wstation_pressure_hg{name=\"%s\"} ", stationName);
 		server.print(hpascals * 0.0295300);
-		server.printCRLF();
+		server.print("\n");
 	}
 }
 
