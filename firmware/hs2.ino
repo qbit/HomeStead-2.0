@@ -20,20 +20,20 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 	float hpascals = sensor.readPressure() / 100;
 	server.httpSuccess();
 	if (type == WebServer::GET) {
-		P(humidity) =	"# HELP wstation_humidity Last sampled humidity of weather shield\r\n"
-				"# TYPE wstation_humidity guage\r\n";
+		P(humidity) =	"# HELP wstation_humidity Last sampled humidity of weather shield\n"
+				"# TYPE wstation_humidity guage\n";
 
-		P(baroTemp) =	"# HELP wstation_barometer_temperature_f Last sampled barometer temperature of weather shield\r\n"
-				"# TYPE wstation_barometer_temperature_f guage\r\n";
+		P(baroTemp) =	"# HELP wstation_barometer_temperature_f Last sampled barometer temperature of weather shield\n"
+				"# TYPE wstation_barometer_temperature_f guage\n";
 
-		P(temp) =	"# HELP wstation_temp_f Last sampled temperature in F of weather shield\r\n"
-				"# TYPE wstation_temp_f guage\r\n";
+		P(temp) =	"# HELP wstation_temp_f Last sampled temperature in F of weather shield\n"
+				"# TYPE wstation_temp_f guage\n";
 
-		P(pressHPA) =	"# HELP wstation_pressure_hpa Last sampled pressure in hectopascals from weather shield\r\n"
-				"# TYPE wstation_pressure_hpa guage\r\n";
+		P(pressHPA) =	"# HELP wstation_pressure_hpa Last sampled pressure in hectopascals from weather shield\n"
+				"# TYPE wstation_pressure_hpa guage\n";
 
-		P(pressHG) =	"# HELP wstation_pressure_hg Last sampled pressure in inches if mercury from weather shield\r\n"
-				"# TYPE wstation_pressure_hg guage\r\n";
+		P(pressHG) =	"# HELP wstation_pressure_hg Last sampled pressure in inches if mercury from weather shield\n"
+				"# TYPE wstation_pressure_hg guage\n";
 
 		server.printP(humidity);
 		server.printf("wstation_humidity{name=\"%s\"} ", stationName);
