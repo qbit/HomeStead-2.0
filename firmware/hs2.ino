@@ -18,6 +18,7 @@ STARTUP(setup_leds());
 
 void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 	float hpascals = sensor.readPressure() / 100;
+
 	server.httpSuccess();
 	if (type == WebServer::GET) {
 		P(humidity) =	"# HELP wstation_humidity Last sampled humidity of weather shield\n"
@@ -26,7 +27,10 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 		P(baroTemp) =	"# HELP wstation_barometer_temperature_f Last sampled barometer temperature of weather shield\n"
 				"# TYPE wstation_barometer_temperature_f gauge\n";
 
-		P(temp) =	"# HELP wstation_temp_f Last sampled temperature in F of weather shield\n"
+		P(tempF) =	"# HELP wstation_temp_f Last sampled temperature in F of weather shield\n"
+				"# TYPE wstation_temp_f gauge\n";
+
+		P(tempC) =	"# HELP wstation_temp_c Last sampled temperature in C of weather shield\n"
 				"# TYPE wstation_temp_f gauge\n";
 
 		P(pressHPA) =	"# HELP wstation_pressure_hpa Last sampled pressure in hectopascals from weather shield\n"
@@ -45,9 +49,14 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 		server.print(sensor.readBaroTempF());
 		server.print("\n");
 
-		server.printP(temp);
+		server.printP(tempF);
 		server.printf("wstation_temp_f{name=\"%s\"} ", stationName);
 		server.print(sensor.getTempF());
+		server.print("\n");
+
+		server.printP(tempC);
+		server.printf("wstation_temp_c{name=\"%s\"} ", stationName);
+		server.print(sensor.getTemp());
 		server.print("\n");
 
 		server.printP(pressHPA);
