@@ -21,19 +21,19 @@ void getData(WebServer &server, WebServer::ConnectionType type, char *, bool) {
 	server.httpSuccess();
 	if (type == WebServer::GET) {
 		P(humidity) =	"# HELP wstation_humidity Last sampled humidity of weather shield\n"
-				"# TYPE wstation_humidity guage\n";
+				"# TYPE wstation_humidity gauge\n";
 
 		P(baroTemp) =	"# HELP wstation_barometer_temperature_f Last sampled barometer temperature of weather shield\n"
-				"# TYPE wstation_barometer_temperature_f guage\n";
+				"# TYPE wstation_barometer_temperature_f gauge\n";
 
 		P(temp) =	"# HELP wstation_temp_f Last sampled temperature in F of weather shield\n"
-				"# TYPE wstation_temp_f guage\n";
+				"# TYPE wstation_temp_f gauge\n";
 
 		P(pressHPA) =	"# HELP wstation_pressure_hpa Last sampled pressure in hectopascals from weather shield\n"
-				"# TYPE wstation_pressure_hpa guage\n";
+				"# TYPE wstation_pressure_hpa gauge\n";
 
 		P(pressHG) =	"# HELP wstation_pressure_hg Last sampled pressure in inches if mercury from weather shield\n"
-				"# TYPE wstation_pressure_hg guage\n";
+				"# TYPE wstation_pressure_hg gauge\n";
 
 		server.printP(humidity);
 		server.printf("wstation_humidity{name=\"%s\"} ", stationName);
